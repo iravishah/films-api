@@ -2,7 +2,7 @@ import { Prop, Schema, SchemaFactory } from "@nestjs/mongoose";
 import * as mongoose from "mongoose";
 import { v4 } from 'uuid';
 
-const PREFIX = 'bd';
+const PREFIX = 'flm';
 
 export type UserDocument = User & Document;
 

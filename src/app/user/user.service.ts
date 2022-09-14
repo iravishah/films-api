@@ -5,13 +5,20 @@ import * as bcrypt from 'bcrypt';
 
 import { CreateUserDto } from "./dto/create-user.dto";
 import { User, UserDocument } from "./schemas/user.schema";
+import { UpdateUserDto } from "./dto/update-user.dto";
 
 @Injectable()
 export class UserService {
     constructor(
         @InjectModel(User.name) private readonly userModel: Model<UserDocument>
     ) { }
-
+    /**
+     *
+     *
+     * @param {string} username
+     * @return {*}  {Promise<User>}
+     * @memberof UserService
+     */
     async findOne(username: string): Promise<User> {
         const q = {
             username
@@ -19,7 +26,13 @@ export class UserService {
 
         return await this.userModel.findOne(q);
     }
-
+    /**
+     *
+     *
+     * @param {CreateUserDto} user
+     * @return {*}  {Promise<User>}
+     * @memberof UserService
+     */
     async create(user: CreateUserDto): Promise<User> {
         user.created_at = user.updated_at = new Date();
         const salt = await bcrypt.genSalt();
@@ -29,5 +42,54 @@ export class UserService {
         } catch (e) {
             throw new PreconditionFailedException(e.message);
         }
+    }
+    /**
+     *
+     *
+     * @param {string} id
+     * @param {UpdateUserDto} user
+     * @return {*}  {Promise<User>}
+     * @memberof UserService
+     */
+    async update(id: string, user: UpdateUserDto): Promise<User> {
+        user.updated_at = new Date();
+        const q = {
+            id
+        }
+
+        const options = {
+            new: true
+        }
+
+        return this.userModel.findOneAndUpdate(q, user, options);
+    }
+    /**
+     *
+     *
+     * @return {*}  {Promise<Array<User>>}
+     * @memberof UserService
+     */
+    async getAll(): Promise<Array<User>> {
+        return await this.userModel.find();
+    }
+    /**
+     *
+     *
+     * @param {*} id
+     * @return {*}  {Promise<User>}
+     * @memberof UserService
+     */
+    async get(id): Promise<User> {
+        return await this.userModel.findOne({ id });
+    }
+    /**
+     *
+     *
+     * @param {*} id
+     * @return {*}  {Promise<any>}
+     * @memberof UserService
+     */
+    async delete(id): Promise<any> {
+        return await this.userModel.deleteOne({ id });
     }
 }
