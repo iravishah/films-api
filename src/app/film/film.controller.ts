@@ -5,7 +5,7 @@ import { UpdateFilmDto } from "./dto/update-film.dto";
 import { FilmService } from "./film.service";
 import { Film } from "./schemas/film.schema";
 
-@Controller('/films')
+@Controller('films')
 @UseGuards(JwtAuthGuard)
 export class FilmController {
     constructor(
