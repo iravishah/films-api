@@ -79,7 +79,7 @@ export class UserService {
      * @return {*}  {Promise<User>}
      * @memberof UserService
      */
-    async get(id): Promise<User> {
+    async get(id: string): Promise<User> {
         return await this.userModel.findOne({ id });
     }
     /**
@@ -89,7 +89,17 @@ export class UserService {
      * @return {*}  {Promise<any>}
      * @memberof UserService
      */
-    async delete(id): Promise<any> {
+    async delete(id: string): Promise<any> {
         return await this.userModel.deleteOne({ id });
+    }
+    /**
+     *
+     *
+     * @param {string} id
+     * @return {*}  {Promise<User>}
+     * @memberof UserService
+     */
+    async fetchUserById(id: string): Promise<User> {
+        return await this.userModel.findById(id);
     }
 }
