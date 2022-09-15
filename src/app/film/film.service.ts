@@ -29,7 +29,6 @@ export class FilmService {
         } catch (e) {
             throw new PreconditionFailedException(e.message);
         }
-        console.log('create film');
         return await this.filmModel.create(film);
     }
     /**

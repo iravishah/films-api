@@ -1,5 +1,5 @@
 import { Body, Controller, Param, Post, Put, Get, UseGuards, Delete } from "@nestjs/common";
-import { JwtAuthGuard } from "src/framework/auth/jwt-auth.guard";
+import { JwtAuthGuard } from "../../framework/auth/jwt-auth.guard";
 import { CreateFilmDto } from "./dto/create-film.dto";
 import { UpdateFilmDto } from "./dto/update-film.dto";
 import { FilmService } from "./film.service";
