@@ -2,6 +2,7 @@ import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { MongooseModule } from '@nestjs/mongoose';
 import { AppController } from './app.controller';
+import { CommentModule } from './app/comment/comment.module';
 import { FilmModule } from './app/film/film.module';
 import { AuthModule } from './framework/auth/auth.module';
 import { loadConfig } from './framework/module.options';
@@ -15,7 +16,8 @@ import { MongooseConfigService } from './framework/mongoose-config.service';
     }),
     ConfigModule.forRoot(loadConfig()),
     AuthModule,
-    FilmModule
+    FilmModule,
+    CommentModule
   ],
   controllers: [AppController],
   providers: [],

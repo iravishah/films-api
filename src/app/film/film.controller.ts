@@ -1,11 +1,11 @@
-import { Body, Controller, Param, Post, Put, Get, UseGuards } from "@nestjs/common";
+import { Body, Controller, Param, Post, Put, Get, UseGuards, Delete } from "@nestjs/common";
 import { JwtAuthGuard } from "src/framework/auth/jwt-auth.guard";
 import { CreateFilmDto } from "./dto/create-film.dto";
 import { UpdateFilmDto } from "./dto/update-film.dto";
 import { FilmService } from "./film.service";
 import { Film } from "./schemas/film.schema";
 
-@Controller('/films')
+@Controller('films')
 @UseGuards(JwtAuthGuard)
 export class FilmController {
     constructor(
@@ -54,5 +54,16 @@ export class FilmController {
     @Get()
     async getAll(): Promise<Array<Film>> {
         return await this.filmService.getAll();
+    }
+    /**
+     *
+     *
+     * @param {string} id
+     * @return {*}  {Promise<any>}
+     * @memberof FilmController
+     */
+    @Delete(':id')
+    async delete(@Param('id') id: string): Promise<any> {
+        return await this.filmService.delete(id);
     }
 }
