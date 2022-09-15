@@ -12,7 +12,7 @@ $ npm install
 ## To build the service
 
 ```bash
-$ npm run buid
+$ npm run build
 ```
 
 ## To start the service
