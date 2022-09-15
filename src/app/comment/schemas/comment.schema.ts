@@ -23,7 +23,7 @@ export class Comment {
         ref: 'Film',
         required: true
     })
-    reviewer_id: Film;
+    film_id: Film;
 
     @Prop({
         type: mongoose.Schema.Types.String,
@@ -32,11 +32,10 @@ export class Comment {
     comment: string
 
     @Prop({
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'User',
+        type: mongoose.Schema.Types.String,
         required: true
     })
-    user_id: User;
+    user_id: string;
 
     @Prop({
         type: mongoose.Schema.Types.Date,

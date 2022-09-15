@@ -76,7 +76,16 @@ export class FilmService {
     async getAll(): Promise<Array<Film>> {
         return await this.filmModel.find();
     }
-
+    /**
+     *
+     *
+     * @param {string} id
+     * @return {*}  {Promise<any>}
+     * @memberof FilmService
+     */
+    async delete(id: string): Promise<any> {
+        return await this.filmModel.deleteOne({ id });
+    }
     /**
      *
      *
