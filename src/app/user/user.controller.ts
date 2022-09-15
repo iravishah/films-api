@@ -1,5 +1,5 @@
 import { Body, Controller, Put, Post, UseGuards, Param, Get, Delete } from "@nestjs/common";
-import { JwtAuthGuard } from "src/framework/auth/jwt-auth.guard";
+import { JwtAuthGuard } from "../../framework/auth/jwt-auth.guard";
 import { CreateUserDto } from "./dto/create-user.dto";
 import { UpdateUserDto } from "./dto/update-user.dto";
 import { User } from "./schemas/user.schema";
