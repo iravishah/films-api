@@ -1,4 +1,4 @@
-import { Injectable, PreconditionFailedException } from "@nestjs/common";
+import { Injectable, NotFoundException, PreconditionFailedException } from "@nestjs/common";
 import { InjectModel } from "@nestjs/mongoose";
 import { Model } from "mongoose";
 import { User } from "../user/schemas/user.schema";
@@ -29,7 +29,7 @@ export class FilmService {
         } catch (e) {
             throw new PreconditionFailedException(e.message);
         }
-
+        console.log('create film');
         return await this.filmModel.create(film);
     }
     /**
@@ -65,7 +65,11 @@ export class FilmService {
      * @memberof FilmService
      */
     async get(id: string): Promise<Film> {
-        return await this.filmModel.findOne({ id });
+        const film: Film = await this.filmModel.findOne({ id });
+        if (!film) {
+            throw new NotFoundException('Film not found!');
+        }
+        return film;
     }
     /**
      *
