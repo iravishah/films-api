@@ -6,7 +6,6 @@ import { User } from "./schemas/user.schema";
 import { UserService } from "./user.service";
 
 @Controller('users')
-@UseGuards(JwtAuthGuard)
 export class UserController {
     constructor(
         private readonly userService: UserService
@@ -30,6 +29,7 @@ export class UserController {
      * @return {*}  {Promise<User>}
      * @memberof UserController
      */
+    @UseGuards(JwtAuthGuard)
     @Put(':id')
     async update(@Param('id') id: string, @Body() body: UpdateUserDto): Promise<User> {
         return await this.userService.update(id, body);
@@ -41,6 +41,7 @@ export class UserController {
      * @return {*}  {Promise<User>}
      * @memberof UserController
      */
+    @UseGuards(JwtAuthGuard)
     @Get(':id')
     async get(@Param('id') id: string): Promise<User> {
         return await this.userService.get(id);
@@ -51,6 +52,7 @@ export class UserController {
      * @return {*}  {Promise<Array<User>>}
      * @memberof UserController
      */
+    @UseGuards(JwtAuthGuard)
     @Get()
     async getAll(): Promise<Array<User>> {
         return await this.userService.getAll();
@@ -62,6 +64,7 @@ export class UserController {
      * @return {*}  {Promise<any>}
      * @memberof UserController
      */
+    @UseGuards(JwtAuthGuard)
     @Delete(':id')
     async delete(@Param('id') id: string): Promise<any> {
         return await this.userService.delete(id);

@@ -1,4 +1,4 @@
-import { Injectable, PreconditionFailedException } from "@nestjs/common";
+import { Injectable, NotFoundException, PreconditionFailedException } from "@nestjs/common";
 import { InjectModel } from "@nestjs/mongoose";
 import { Model } from "mongoose";
 import * as bcrypt from 'bcrypt';
@@ -80,7 +80,11 @@ export class UserService {
      * @memberof UserService
      */
     async get(id: string): Promise<User> {
-        return await this.userModel.findOne({ id });
+        const user: User = await this.userModel.findOne({ id });
+        if (!user) {
+            throw new NotFoundException('User not found!');
+        }
+        return user;
     }
     /**
      *

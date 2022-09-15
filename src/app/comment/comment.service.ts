@@ -1,4 +1,4 @@
-import { Injectable } from "@nestjs/common";
+import { Injectable, NotFoundException } from "@nestjs/common";
 import { InjectModel } from "@nestjs/mongoose";
 import { Model } from "mongoose";
 import { CreateCommentDto } from "./dto/create-comment.dto";
@@ -58,7 +58,11 @@ export class CommentService {
      * @memberof CommentService
      */
     async get(id: string): Promise<Comment> {
-        return await this.commentModel.findOne({ id });
+        const comment: Comment = await this.commentModel.findOne({ id });
+        if (!comment) {
+            throw new NotFoundException('Comment not found!');
+        }
+        return comment;
     }
     /**
      *
