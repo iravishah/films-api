@@ -37,11 +37,7 @@ export class UserService {
         user.created_at = user.updated_at = new Date();
         const salt = await bcrypt.genSalt();
         user.password = await bcrypt.hash(user.password, salt);
-        try {
-            return await this.userModel.create(user);
-        } catch (e) {
-            throw new PreconditionFailedException(e.message);
-        }
+        return await this.userModel.create(user);
     }
     /**
      *
