@@ -33,7 +33,7 @@ $ npm test
 $ npm run test:cov
 ```
 
-## To see execute e2e test
+## To execute end to end test
 
 ```bash
 $ npm run test:e2e
