@@ -1,37 +1,20 @@
 import { ApiProperty } from "@nestjs/swagger";
-import { IsBoolean, IsNotEmpty, IsOptional, IsString } from "class-validator";
+import { IsOptional } from "class-validator";
 
 export class UpdateUserDto {
-    @IsNotEmpty()
-    @IsString()
+    @IsOptional()
     @ApiProperty({
         description: 'Name of the user'
     })
     name: string;
 
-    @IsNotEmpty()
-    @IsString()
-    @ApiProperty({
-        description: 'Username of the user'
-    })
-    username: string;
-
-    @IsNotEmpty()
-    @IsString()
-    @ApiProperty({
-        description: 'Password of the user'
-    })
-    password: string;
-
-    @IsNotEmpty()
-    @IsString()
+    @IsOptional()
     @ApiProperty({
         description: 'Description of the user'
     })
     description: string;
 
-    @IsNotEmpty()
-    @IsBoolean()
+    @IsOptional()
     @ApiProperty({
         description: 'Send true if user is reviewer otherwise false',
         type: Boolean
