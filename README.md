@@ -20,3 +20,21 @@ $ npm run build
 ```bash
 $ npm start
 ```
+
+## To execute unit test
+
+```bash
+$ npm test
+```
+
+## To see code coverage
+
+```bash
+$ npm run test:cov
+```
+
+## To see execute e2e test
+
+```bash
+$ npm run test:e2e
+```
