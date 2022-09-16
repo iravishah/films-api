@@ -2,30 +2,25 @@ import { ApiProperty } from "@nestjs/swagger";
 import { ArrayMinSize, IsArray, IsNotEmpty, IsNumber, IsOptional, IsString, Max } from "class-validator";
 
 export class UpdateFilmDto {
-
-    @IsNotEmpty()
-    @IsString()
+    @IsOptional()
     @ApiProperty({
         description: 'Name of the film'
     })
     name: string;
 
-    @IsNotEmpty()
-    @IsString()
+    @IsOptional()
     @ApiProperty({
         description: 'Description of the film'
     })
     description: string;
 
-    @IsNotEmpty()
-    @IsString()
+    @IsOptional()
     @ApiProperty({
         description: 'Release date of the film'
     })
     release_date: string;
 
-    @IsNotEmpty()
-    @IsNumber()
+    @IsOptional()
     @Max(5)
     @ApiProperty({
         description: 'Rating for the film',
@@ -34,21 +29,19 @@ export class UpdateFilmDto {
     })
     rating: number;
 
-    @IsNotEmpty()
-    @IsString()
+    @IsOptional()
     @ApiProperty({
         description: 'Give review for the film'
     })
     review: string;
 
-    @IsNotEmpty()
-    @IsString()
+    @IsOptional()
     @ApiProperty({
         description: 'Country where film is released'
     })
     country: string;
 
-    @IsNotEmpty()
+    @IsOptional()
     @IsArray()
     @ArrayMinSize(1)
     @ApiProperty({
@@ -57,8 +50,7 @@ export class UpdateFilmDto {
     })
     genres: [];
 
-    @IsNotEmpty()
-    @IsString()
+    @IsOptional()
     @ApiProperty({
         description: 'Image of the film poster'
     })
