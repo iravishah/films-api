@@ -2,15 +2,13 @@ import { ApiProperty } from "@nestjs/swagger";
 import { IsNotEmpty, IsOptional, IsString } from "class-validator";
 
 export class UpdateCommentDto {
-    @IsNotEmpty()
-    @IsString()
+    @IsOptional()
     @ApiProperty({
         description: 'Film for which you have to add the comment'
     })
     film_id: string;
 
-    @IsNotEmpty()
-    @IsString()
+    @IsOptional()
     @ApiProperty({
         description: 'Comment for the film'
     })
